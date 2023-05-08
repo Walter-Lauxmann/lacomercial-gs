@@ -5,8 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Comercial</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    
+    <nav class="azul-oscuro">
+        <a href="index.html">LA COMERCIAL</a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="articulos.html">Artículos</a></li>
+        </ul>
+        <input type="text" name="usuario" placeholder="Usuario">
+        <input type="password" name="password" placeholder="Contraseña">
+    </nav>
+
+    <section>
+        <div class="ancho-total">
+            <div class="recuadro azul-claro flotar-izquierda">
+                <h2>Artículos de importación</h2>
+                <ul>
+                    <li>Urquiza 2153</li>
+                    <li>2200 - San Lorenzo</li>
+                    <li>Responsable Inscripto</li>
+                    <li>CUIT: 30-56032503-3</li>
+                    <li>I. Brutos: CM 921-750546</li>
+                </ul>
+            </div>
+            <div class="recuadro azul-oscuro flotar-derecha">
+                <form action="registrar.html">
+                    <table class="ancho-total">
+                        <tr>
+                            <td>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="usuario">Usuario</label>
+                                <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="contrasenia">Contraseña</label>
+                                <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit">Registrarse</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div>
+            <p>La Comercial - Todos los derechos reservados - 2023</p>
+        </div>
+    </footer>
 </body>
 </html>
