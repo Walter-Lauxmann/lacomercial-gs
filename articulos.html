@@ -57,61 +57,26 @@
         </div>
       </div>
     </nav>
+    <header class="text-center">
+      <h1>Lista de artículos</h1>
+    </header>
     <section class="container">
       <div class="row">
-        <div class="col-8 recuadro azul-claro">
-          <h2>Artículos de importación</h2>
-          <ul>
-            <li>Urquiza 2153</li>
-            <li>2200 - San Lorenzo</li>
-            <li>Responsable Inscripto</li>
-            <li>CUIT: 30-56032503-3</li>
-            <li>I. Brutos: CM 921-750546</li>
-          </ul>
-        </div>
-        <div class="col-4 recuadro azul-oscuro">
-          <form action="registrar.html">
-            <table class="ancho-total">
-              <tr>
-                <td>
-                  <label for="nombre">Nombre</label>
-                  <input
-                    type="text"
-                    name="nombre"
-                    id="nombre"
-                    placeholder="Nombre"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="usuario">Usuario</label>
-                  <input
-                    type="text"
-                    name="usuario"
-                    id="usuario"
-                    placeholder="Usuario"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="contrasenia">Contraseña</label>
-                  <input
-                    type="password"
-                    name="contrasenia"
-                    id="contrasenia"
-                    placeholder="Contraseña"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button type="submit">Registrarse</button>
-                </td>
-              </tr>
-            </table>
-          </form>
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="imagenes/productos/iPhone-SE-Black.jpg" class="card-img-top" alt="iPhone SE">
+            <div class="card-body">
+              <h5 class="card-title">101 - iPhone SE</h5>
+              <p class="card-text">
+                Procesador: A13 Bionic<br>
+                Almacenamiento: 128 GB<br>
+                Cámaras: 7Mp / 12 Mp<br>
+                Pantalla: 4,7 IPS Retina.
+              </p>
+              <h5>$ 74999.-</h5>
+              <input class="form-control" type="number" id="inputcantidad1" value="0" min="0" max="30">
+            </div>
+          </div>
         </div>
       </div>
     </section>

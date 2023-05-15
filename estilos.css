@@ -5,6 +5,16 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+header {
+    background-color: #3a5795;
+    color: #fff;
+    font-size: 11px;
+}
+
+header h1 {
+    text-align: center;
+}
+
 /* Clases */
 .ancho-total {
     width: 100%;
