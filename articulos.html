@@ -61,71 +61,8 @@
       <h1>Lista de artículos</h1>
     </header>
     <section class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="imagenes/productos/iPhone-SE-Black.jpg" class="card-img-top" alt="iPhone SE">
-            <div class="card-body">
-              <h5 class="card-title"><span id="spancodigo1">101</span> - <span id="spannombre1">iPhone SE</span></h5>
-              <p class="card-text">
-                Procesador: A13 Bionic<br>
-                Almacenamiento: 128 GB<br>
-                Cámaras: 7Mp / 12 Mp<br>
-                Pantalla: 4,7 IPS Retina.
-              </p>
-              <h5>$ <span id="spanprecio1">74999</span>.-</h5>
-              <input class="form-control" type="number" id="inputcantidad1" value="0" min="0" max="30">
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="imagenes/productos/Motorola-Moto-G100.jpg" class="card-img-top" alt="Motorola Moto G20">
-            <div class="card-body">
-              <h5 class="card-title"><span id="spancodigo2">102</span> - <span id="spannombre2">Motorola Moto G20</span></h5>
-              <p class="card-text">
-                Procesador: Octa-Core (3,2 GHz)<br>
-                Almacenamiento: 128 GB<br>
-                Cámaras: 13Mp / 64 Mp<br>
-                Pantalla: 6,7 FHD+.
-              </p>
-              <h5>$ <span id="spanprecio2">50000</span>.-</h5>
-              <input class="form-control" type="number" id="inputcantidad2" value="0" min="0" max="30">
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="imagenes/productos/Iphone-11-Pro.jpg" class="card-img-top" alt="iPhone 11 Pro">
-            <div class="card-body">
-              <h5 class="card-title"><span id="spancodigo3">103</span> - <span id="spannombre3">iPhone 11 Pro</span></h5>
-              <p class="card-text">
-                Procesador: A13 Bionic<br>
-                Almacenamiento: 256 GB<br>
-                Cámaras: 12Mp / 12 Mp<br>
-                Pantalla: 5,8 Super Retina XDR.
-              </p>
-              <h5>$ <span id="spanprecio3">232901</span>.-</h5>
-              <input class="form-control" type="number" id="inputcantidad3" value="0" min="0" max="30">
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="imagenes/productos/Samsung-Galaxy-A72.jpg" class="card-img-top" alt="Samsung Galaxy A72">
-            <div class="card-body">
-              <h5 class="card-title"><span id="spancodigo4">201</span> - <span id="spannombre4">Samsung Galaxy A72</span></h5>
-              <p class="card-text">
-                Procesador: Octa-Core (2,3 GHz)<br>
-                Almacenamiento: 128 GB<br>
-                Cámaras: 32Mp / 64 Mp<br>
-                Pantalla: 6,7 FHD+.
-              </p>
-              <h5>$ <span id="spanprecio4">66999</span>.-</h5>
-              <input class="form-control" type="number" id="inputcantidad4" value="0" min="0" max="30">
-            </div>
-          </div>
-        </div>
+      <div class="row" id="listado">
+        
       </div>
     </section>
     <section class="container">
@@ -140,40 +77,13 @@
             <th>Total</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td id="codigo1"></td>
-            <td id="nombre1"></td>
-            <td id="cantidad1"></td>
-            <td id="precio1"></td>
-            <td id="total1"></td>
-          </tr>
-          <tr>
-            <td id="codigo2"></td>
-            <td id="nombre2"></td>
-            <td id="cantidad2"></td>
-            <td id="precio2"></td>
-            <td id="total2"></td>
-          </tr>
-          <tr>
-            <td id="codigo3"></td>
-            <td id="nombre3"></td>
-            <td id="cantidad3"></td>
-            <td id="precio3"></td>
-            <td id="total3"></td>
-          </tr>
-          <tr>
-            <td id="codigo4"></td>
-            <td id="nombre4"></td>
-            <td id="cantidad4"></td>
-            <td id="precio4"></td>
-            <td id="total4"></td>
-          </tr>
+        <tbody id="detalle">
+          
         </tbody>
         <tfoot class="bg-success text-white">
           <tr>
             <td colspan="4" style="text-align: right;">Total del pedido</td>
-            <td id="totalpedido"></td>
+            <td id="total"></td>
           </tr>
         </tfoot>
       </table>
@@ -188,5 +98,7 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <script src="controladores/lista-articulos.js" type="module"></script>
+    <script src="controladores/notapedido.js"></script>
   </body>
 </html>
