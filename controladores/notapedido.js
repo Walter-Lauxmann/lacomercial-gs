@@ -1,7 +1,7 @@
 
   const codigos = document.getElementsByName("spancodigo");
   const nombres = document.getElementsByName("spannombre");
-  const precios = document.getElementsById("spanprecio");
+  const precios = document.getElementsByName("spanprecio");
   const cantidades = document.getElementsByName("inputcantidad");
 
   const detalle = document.getElementById("detalle");
