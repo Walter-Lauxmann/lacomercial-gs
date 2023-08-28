@@ -47,7 +47,6 @@ class Modelo extends Conexion {
     public function get_tabla() {
         return $this->tabla;
     }
-    
     public function get_id() {
         return $this->id;
     }
@@ -111,5 +110,33 @@ class Modelo extends Conexion {
         $datos = json_encode($resultado->fetch_all(MYSQLI_ASSOC));
         // Retornamos los datos
         return $datos;
+    }
+
+    /**
+     * Método de inserción de datos
+     * Inserta registros en una tabla
+     * @param valores los valores a insertar
+     */
+    public function insertar($valores) {
+        // INSERT INTO articulos(codigo,nombre,descripcion,precio,imagen,)
+        // VALUES ('101','Xiaomi M9','Procesador:...','120000','Xiaomi.jpg')
+
+        $atributos = '';
+        $datos = '';
+        // Para cada $valores como $key=>$value
+        foreach($valores as $key => $value) {
+            $atributos .= $key . ",";   //Agregamos las $key a $atributos
+            $datos .= "'" . $value . "',";  //Agregamos los $value a $datos
+        }
+        // Quitamos los últimos caracteres (,) a $atributos y a $datos
+        $atributos = substr($atributos,0,strlen($atributos)-1);
+        $datos = substr($datos,0,strlen($datos)-1);
+
+        $sql = "INSERT INTO $this->tabla($atributos)";
+        $sql .= " VALUES($datos)";
+
+        echo $sql; //Mostramos la instrucción SQL resultante
+
+        $this->_db->query($sql); //Ejecutamos la instrucción SQL
     }
 }
