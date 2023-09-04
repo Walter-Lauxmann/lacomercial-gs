@@ -1,4 +1,27 @@
-import { obtenerArticulos } from '../modelos/articulos';
+import { obtenerArticulos, insertarArticulos } from '../modelos/articulos';
+
+// Alerta
+const alerta = document.querySelector('#alerta');
+
+// Formulario
+const formulario = document.querySelector('#formulario');
+const formularioModal = new bootstrap.Modal(document.querySelector('#formularioModal'));
+const btnNuevo = document.querySelector('#btnNuevo');
+
+// Inputs
+const inputCodigo = document.querySelector("#codigo");
+const inputNombre = document.querySelector("#nombre");
+const inputDescripcion = document.querySelector("#descripcion");
+const inputPrecio = document.querySelector("#precio");
+const inputImagen = document.querySelector("#imagen");
+
+// Imagen del formulario
+const frmImagen = document.querySelector("#frmimagen");
+
+// Variables
+let opcion = '';
+let id;
+let mensajeAlerta;
 
 // Evento que sucede cuando todo el contenido del DOM es leído
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,3 +51,54 @@ async function mostrarArticulos() {
     ` 
   }
 }
+
+/**
+ * Ejecuta el evento click del Botón Nuevo
+ */
+btnNuevo.addEventListener('click', () => {
+  // Limpiamos los inputs
+  inputCodigo.value = null;
+  inputNombre.value = null;
+  inputDescripcion.value = null;
+  inputPrecio.value = null;
+  inputImagen.value = null;
+  frmImagen.src = './imagenes/productos/nodisponible.png';
+
+  // Mostramos el formulario
+  formularioModal.show();
+
+  opcion = 'insertar';
+});
+
+/**
+ * Ejecuta el evento submit del formulario
+ */
+formulario.addEventListener('submit', function(e) {
+  e.preventDefault();     // Prevenimos la acción por defecto
+  const datos = new FormData(formulario); // Guardamos los datos del formulario
+
+  switch(opcion) {
+      case 'insertar':
+          mensajeAlerta = `Datos guardados`;
+          insertarArticulos(datos);                        
+          break;
+  }
+  insertarAlerta(mensajeAlerta, 'success');
+  mostrarArticulos();
+})
+
+/**
+* Define el mensaje de alerta
+* @param mensaje el mensaje a mostrar
+* @param tipo el tipo de alerta
+*/
+const insertarAlerta = (mensaje, tipo) => {
+  const envoltorio = document.createElement('div');
+  envoltorio.innerHTML = `
+  <div class="alert alert-${tipo} alert-dismissible" role="alert">
+      <div>${mensaje}</div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  `;
+  alerta.append(envoltorio);
+};

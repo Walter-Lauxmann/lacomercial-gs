@@ -5,3 +5,4 @@ define('DB_USER', 'root'); // Usuario del servidor de BD
 define('DB_PASS', ''); // Contraseña del servidor
 define('DB_NAME', 'gestionventas'); // Nombre de la BD
 define('DB_CHARSET', 'utf8'); // Cotejamiento de caracteres
+?>
