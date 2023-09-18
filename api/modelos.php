@@ -115,7 +115,7 @@ class Modelo extends Conexion {
     /**
      * Método de inserción de datos
      * Inserta registros en una tabla
-     * @param valores los valores a insertar
+     * @param valores : los valores a insertar
      */
     public function insertar($valores) {
         // INSERT INTO articulos(codigo,nombre,descripcion,precio,imagen,)
@@ -138,5 +138,36 @@ class Modelo extends Conexion {
         echo $sql; //Mostramos la instrucción SQL resultante
 
         $this->_db->query($sql); //Ejecutamos la instrucción SQL
+    }
+
+    /**
+     * Método para la actualización de datos 
+     * Modifica los registros de una tabla
+     * @param valores : los valores a modificar
+     */ 
+    public function actualizar($valores){
+        // UPDATE articulos SET precio = '35600' WHERE id='10'
+        $sql="UPDATE $this->tabla SET "; // ACTUALIZAR $tabla ESTABLECIENDO
+        // Para cada $valores como $key => $value
+        foreach ($valores as $key => $value) {
+            // Agregamos a la instrucción los campos ($key) y los valores ($value)
+            $sql .= $key."='".$value."',"; 
+        }
+        $sql= substr($sql,0,strlen($sql)-1); // Quitamos el último caracter (,) a $sql
+        // Agregamos a la instrucción el criterio
+        $sql .= " WHERE $this->criterio"; // DONDE $criterio
+        // echo $sql.'<br />'; // Mostramos la instruccón sql resultante
+        $this->_db->query($sql); // Ejecutamos la consulta
+    }
+
+    /**
+     * Método para la eliminación de datos 
+     * Elimina los registros de una tabla
+     */ 
+    public function eliminar(){
+        // DELETE FROM articulos WHERE id='10'
+        // Guardamos en la variable $sql la instrucción DELETE
+        $sql="DELETE FROM $this->tabla WHERE $this->criterio"; // ELIMINAR DESDE $tabla DONDE $criterio
+        $this->_db->query($sql); // Ejecutamos la consulta
     }
 }

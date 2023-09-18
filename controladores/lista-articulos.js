@@ -46,6 +46,12 @@ async function mostrarArticulos() {
         <h5>$ <span name="spanprecio">${articulo.precio}</span>.-</h5>
         <input class="form-control" type="number" name="inputcantidad" value="0" min="0" max="30" onchange="calcularPedido()">
       </div>
+      <div class="card-footer d-flex justify-content-center">
+        <a class="btnEditar btn btn-primary">Editar</a>
+        <a class="btnBorrar btn btn-danger">Borrar</a>
+        <input type="hidden" class="idArticulo" value="${articulo.id}">
+        <input type="hidden" class="imagenArticulo" value="${articulo.imagen??'nodisponible.png'}">
+      </div>
     </div>
   </div>
     ` 

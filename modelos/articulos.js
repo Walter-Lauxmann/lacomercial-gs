@@ -19,7 +19,7 @@ export async function obtenerArticulos() {
  * @param datos los datos a insertar
  */
 export function insertarArticulos(datos) {
-  fetch(url + '&accion=insertar', {
+  fetch(`${url}&accion=insertar`, {
       method: 'POST',
       body: datos
       })
@@ -28,4 +28,34 @@ export function insertarArticulos(datos) {
           console.log(data);
           return data;
       });
+}
+
+/**
+ * Actualiza los datos en la base de datos
+ * @param datos los datos a actualizar
+ * @param id el id del artículo
+ */
+export const actualizarArticulos = (datos, id) => {
+  fetch(`${url}&accion=actualizar&id=${id}`, { // Ejecutamos el método actualizar de la API
+      method: 'POST',
+      body: datos
+  })
+  .then(res => res.json())
+  .then(data => {
+      console.log(data);
+      return data;
+  });
+}
+
+/**
+* Elimina los datos en la base de datos
+* @param id el id del artículo a eliminar
+*/
+export const eliminarArticulos = (id) => {
+  fetch(`${url}&accion=eliminar&id=${id}`, {}) // Ejecutamos el método eliminar de la API
+          .then(res => res.json())
+          .then(data => {
+              console.log(data);
+              return data;
+          })
 }
