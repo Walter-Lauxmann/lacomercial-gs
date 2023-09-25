@@ -1,4 +1,4 @@
-import { obtenerArticulos, insertarArticulos } from '../modelos/articulos';
+import { obtenerArticulos, insertarArticulos, actualizarArticulos, eliminarArticulos } from '../modelos/articulos';
 
 // Alerta
 const alerta = document.querySelector('#alerta');
@@ -85,9 +85,14 @@ formulario.addEventListener('submit', function(e) {
 
   switch(opcion) {
       case 'insertar':
-          mensajeAlerta = `Datos guardados`;
-          insertarArticulos(datos);                        
-          break;
+        mensajeAlerta = `Datos guardados`;
+        insertarArticulos(datos);                        
+        break;
+
+      case 'actualizar':
+        mensajeAlerta = `Datos actualizados`;
+        actualizarArticulos(datos, id);                        
+        break;
   }
   insertarAlerta(mensajeAlerta, 'success');
   mostrarArticulos();
@@ -108,3 +113,62 @@ const insertarAlerta = (mensaje, tipo) => {
   `;
   alerta.append(envoltorio);
 };
+
+/**
+ * Determina en qué elemento se realiza un evento
+ * @param elemento el elemento al que se realiza el evento
+ * @param evento el evento realizado
+ * @param selector el selector seleccionado
+ * @param manejador el método que maneja el evento
+ */
+const on = (elemento, evento, selector, manejador) => {
+  elemento.addEventListener(evento, e => { // Agregamos el método para escuchar el evento
+    if(e.target.closest(selector)) { // Si el objetivo del manejador es el selector
+      manejador(e); // Ejecutamos el método del manejador
+    }
+  })
+}
+
+/**
+ * Función para el botón Editar
+ */
+on(document, 'click', '.btnEditar', e => {
+  const cardFooter = e.target.parentNode; // Guardamos el elemento padre del botón
+
+  // Guardamos los valores del card del artículo
+  id = cardFooter.querySelector('.idArticulo').value;
+  const codigo = cardFooter.parentNode.querySelector('span[name=spancodigo]').innerHTML;
+  const nombre = cardFooter.parentNode.querySelector('span[name=spannombre]').innerHTML;
+  const descripcion = cardFooter.parentNode.querySelector('.card-text').innerHTML;
+  const precio = cardFooter.parentNode.querySelector('span[name=spanprecio]').innerHTML;
+  const imagen = cardFooter.querySelector('.imagenArticulo').value;
+
+  // Asignamos los valores a los input del formulario
+  inputCodigo.value = codigo;
+  inputNombre.value = nombre;
+  inputDescripcion.value = descripcion;
+  inputPrecio.value = precio;
+  frmImagen.src = `imagenes/productos/${imagen}`;
+
+  // Mostramos el formulario
+  formularioModal.show();
+
+  opcion = 'actualizar';
+
+});
+
+
+/**
+ *  Función para el botón Borrar
+ */
+on(document, 'click', '.btnBorrar', e => {
+  const cardFooter = e.target.parentNode; // Guardamos el elemento padre del botón
+  id = cardFooter.querySelector('.idArticulo').value; // Obtenemos el id del artículo
+  const nombre = cardFooter.parentNode.querySelector('span[name=spannombre]').innerHTML; // Obtenemos el nombre del artículo
+  let aceptar = confirm(`¿Realmente desea eliminar a ${nombre}`); // Pedimos confirmación para eliminar
+  if (aceptar) {
+      eliminarArticulos(id);
+      insertarAlerta(`${nombre}  borrado`, 'danger');
+      mostrarArticulos();
+  }
+});
