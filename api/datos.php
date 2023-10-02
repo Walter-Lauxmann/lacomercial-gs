@@ -7,31 +7,35 @@ $mensaje = '';
 if(isset($_GET['tabla'])) { // Si está seteado $_GET['tabla']
     $tabla = new Modelo($_GET['tabla']); // Creamos el objeto $tabla
 
+    if(isset($_GET['id'])) {   // Si está seteado el atributo id
+        $tabla->set_criterio("id=".$_GET['id']); // Establecemos el criterio
+    }
+
     if(isset($_GET['accion'])){ // Si está seteada GET['accion']
         if($_GET['accion'] == 'insertar' || $_GET['accion'] == 'actualizar'){ // Si la accion es insertar O es igual a actualizar
             $valores = $_POST; // Tomamos lo que viene del post            
         }    
 
-        // SUBIDA DE IMÁGENES //
-        if (
-            isset($_FILES) &&
-            isset($_FILES['imagen']) &&
-            !empty($_FILES['imagen']['name'] &&
-            !empty($_FILES['imagen']['tmp_name']))
-        ) {
+        // Subida de imágenes
+        if(                                     // si
+            isset($_FILES) &&                      // está seteado $_FILES Y
+            isset($_FILES['imagen']) &&            // está seteado $_FILES['imagen'] Y
+            !empty($_FILES['imagen']['name'] &&    // NO está vacío $_FILES['imagen']['name'] Y
+            !empty($_FILES['imagen']['tmp_name'])) // NO está vacío $_FILES['imagen']['tmp_name']
+            ) {
             if(is_uploaded_file($_FILES['imagen']['tmp_name'])) {
                 $tmp_nombre = $_FILES['imagen']['tmp_name'];
                 $nombre = $_FILES['imagen']['name'];
-                $destino = '../imagenes/productos/'.$nombre;
-                if(move_uploaded_file($tmp_nombre, $destino)) {
-                    $mensaje = 'Archivo subido correctamente';
+                $destino = '../imagenes/productos/' . $nombre;
+                if(move_uploaded_file($tmp_nombre, $destino)) { // Si podemos mover el archivo temporal al destino
+                    $mensaje .= 'Archivo subido correctamente a ' . $destino;
                     $valores['imagen'] = $nombre;
                 } else {
-                    $mensaje = 'No se ha podido subir el archivo';
-                    unlink(ini_get('upload_tmp_dir'.$_FILES['imagen']['tmp_name']));
+                    $mensaje .= 'No se ha podido subir el archivo';
+                    unlink(ini_get('upload_tmp_dir').$_FILES['imagen']['tmp_name']);
                 }
             } else {
-                $mensaje = 'Error: El archivo no fue procesado correctamente';
+                $mensaje .= 'Error: El archivo no fue procesado correctamente';
             }
         }
 

@@ -32,7 +32,7 @@ async function mostrarArticulos() {
   const articulos = await obtenerArticulos();
 
   const listado = document.getElementById('listado');
-
+  listado.innerHTML = '';
   for (let articulo of articulos) {
     listado.innerHTML += `
   <div class="col">
