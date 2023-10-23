@@ -39,21 +39,35 @@
               <a class="nav-link" href="articulos.html">Artículos</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="text"
-              placeholder="Usuario"
-              aria-label="Usuario"
-            />
-            <input
-              class="form-control me-2"
-              type="password"
-              placeholder="Contraseña"
-              aria-label="Contraseña"
-            />
-            <button class="btn btn-outline-success" type="submit">Login</button>
-          </form>
+          <div id="nav-login">
+            <div id="div-login">
+              <form class="d-flex" id="form-login">
+                <input
+                  class="form-control me-2"
+                  id="usuario"
+                  name="usuario"
+                  type="text"
+                  placeholder="Usuario"
+                  aria-label="Usuario"
+                />
+                <input
+                  class="form-control me-2"
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Contraseña"
+                  aria-label="Contraseña"
+                />
+                <button class="btn btn-outline-success" type="submit">Login</button>
+              </form>
+            </div>
+            <div id="div-logout" style="display: none;">
+              <span id="texto-logueado" class="text-white"></span>
+              <button id="btn-logout" class="btn btn-outline-primary">
+                Cerrar Sesión
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -136,9 +150,7 @@
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label for="imagen" class="form-label"
-                        >Seleccionar imagen</label
-                      >
+                      <label for="imagen" class="form-label">Seleccionar imagen</label>
                       <input class="form-control" type="file" id="imagen" name="imagen" />
                     </div>
                   </div>
@@ -164,5 +176,6 @@
     ></script>
     <script src="controladores/lista-articulos.js" type="module"></script>
     <script src="controladores/notapedido.js"></script>
+    <script src="controladores/login.js"></script>
   </body>
 </html>

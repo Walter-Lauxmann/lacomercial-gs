@@ -119,7 +119,7 @@ class Modelo extends Conexion {
      */
     public function insertar($valores) {
         // INSERT INTO articulos(codigo,nombre,descripcion,precio,imagen,)
-        // VALUES ('101','Xiaomi M9','Procesador:...','120000','Xiaomi.jpg')
+        // VALUES ('101','Xiaomi M9','Procesador:...','120000','Xiaomi.jpg',)
 
         $atributos = '';
         $datos = '';

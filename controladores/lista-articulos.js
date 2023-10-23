@@ -23,38 +23,77 @@ let opcion = '';
 let id;
 let mensajeAlerta;
 
+// Control de usuario
+let usuario = '';
+let logueado = false;
+
+/**
+ * Control de usuario
+ */
+const controlUsuario = () => {
+  if(sessionStorage.getItem('usuario')) {
+    usuario = sessionStorage.getItem('usuario');
+    logueado = true;
+  }
+
+  if(logueado) {
+    btnNuevo.style.display = 'inline';
+  } else {
+    btnNuevo.style.display = 'none';
+  }
+};
+
 // Evento que sucede cuando todo el contenido del DOM es leído
 document.addEventListener('DOMContentLoaded', () => {
+  controlUsuario();
   mostrarArticulos();
 });
 
 async function mostrarArticulos() {
   const articulos = await obtenerArticulos();
-
+  console.log(articulos);
   const listado = document.getElementById('listado');
   listado.innerHTML = '';
   for (let articulo of articulos) {
-    listado.innerHTML += `
-  <div class="col">
-    <div class="card" style="width: 18rem;">
-      <img src="imagenes/productos/${articulo.imagen}" class="card-img-top" alt="${articulo.nombre}">
-      <div class="card-body">
-        <h5 class="card-title"><span name="spancodigo">${articulo.codigo}</span> - <span name="spannombre">${articulo.nombre}</span></h5>
-        <p class="card-text">
-        ${articulo.descripcion}
-        </p>
-        <h5>$ <span name="spanprecio">${articulo.precio}</span>.-</h5>
-        <input class="form-control" type="number" name="inputcantidad" value="0" min="0" max="30" onchange="calcularPedido()">
-      </div>
-      <div class="card-footer d-flex justify-content-center">
-        <a class="btnEditar btn btn-primary">Editar</a>
-        <a class="btnBorrar btn btn-danger">Borrar</a>
-        <input type="hidden" class="idArticulo" value="${articulo.id}">
-        <input type="hidden" class="imagenArticulo" value="${articulo.imagen??'nodisponible.png'}">
+    if(logueado) {
+      listado.innerHTML += `
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="imagenes/productos/${articulo.imagen}" class="card-img-top" alt="${articulo.nombre}">
+        <div class="card-body">
+          <h5 class="card-title"><span name="spancodigo">${articulo.codigo}</span> - <span name="spannombre">${articulo.nombre}</span></h5>
+          <p class="card-text">
+          ${articulo.descripcion}
+          </p>
+          <h5>$ <span name="spanprecio">${articulo.precio}</span>.-</h5>
+          <input class="form-control" type="number" name="inputcantidad" value="0" min="0" max="30" onchange="calcularPedido()">
+        </div>
+        <div class="card-footer d-flex justify-content-center">
+          <a class="btnEditar btn btn-primary">Editar</a>
+          <a class="btnBorrar btn btn-danger">Borrar</a>
+          <input type="hidden" class="idArticulo" value="${articulo.id}">
+          <input type="hidden" class="imagenArticulo" value="${articulo.imagen??'nodisponible.png'}">
+        </div>
       </div>
     </div>
-  </div>
-    ` 
+      ` 
+    } else {
+      listado.innerHTML += `
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="imagenes/productos/${articulo.imagen}" class="card-img-top" alt="${articulo.nombre}">
+        <div class="card-body">
+          <h5 class="card-title"><span name="spancodigo">${articulo.codigo}</span> - <span name="spannombre">${articulo.nombre}</span></h5>
+          <p class="card-text">
+          ${articulo.descripcion}
+          </p>
+          <h5>$ <span name="spanprecio">${articulo.precio}</span>.-</h5>
+          <input class="form-control" type="number" name="inputcantidad" value="0" min="0" max="30" onchange="calcularPedido()">
+        </div>
+      </div>
+    </div>
+      ` 
+    }
   }
 }
 
